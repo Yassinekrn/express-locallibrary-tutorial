@@ -8,6 +8,21 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
 const app = express();
+const password = "27K062E5y6DBTk20uk9Xu"; // not the actual password :)
+//"mongodb+srv://yassinekrn:27K062E5y6DBTk20uk9Xu@cluster0.ofmazu6.mongodb.net/local_lib?retryWrites=true&w=majority"
+
+const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+
+const mongoDB = `mongodb+srv://yassinekrn:${password}@cluster0.ofmazu6.mongodb.net/locallib?retryWrites=true&w=majority`;
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+
+// Create a "genre" model just by requiring the module
+const genre = require("../models/genre");
 
 // view engine setup
 //set the 'views' value to specify the folder where the templates will be stored
