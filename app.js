@@ -6,15 +6,16 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const catalogRouter = require("./routes/catalog"); //Import routes for "catalog" area of site
+
+require('dotenv').config()
 
 const app = express();
-const password = "27K062E5y6DBTk20uk9Xu"; // not the actual password :)
-//"mongodb+srv://yassinekrn:27K062E5y6DBTk20uk9Xu@cluster0.ofmazu6.mongodb.net/local_lib?retryWrites=true&w=majority"
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
-const mongoDB = `mongodb+srv://yassinekrn:${password}@cluster0.ofmazu6.mongodb.net/locallib?retryWrites=true&w=majority`;
+const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ofmazu6.mongodb.net/locallib?retryWrites=true&w=majority`;
 
 main().catch((err) => console.log(err));
 async function main() {
@@ -22,7 +23,7 @@ async function main() {
 }
 
 // Create a "genre" model just by requiring the module
-const genre = require("../models/genre");
+const genre = require("./models/genre");
 
 // view engine setup
 //set the 'views' value to specify the folder where the templates will be stored
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/catalog', catalogRouter);
 
 // catch 404 and forward to error handler
 //if you get to this point, there is something wrong with the request
