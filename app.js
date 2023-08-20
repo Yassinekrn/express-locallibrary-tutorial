@@ -15,7 +15,10 @@ const app = express();
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
-const mongoDB = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.ofmazu6.mongodb.net/locallib?retryWrites=true&w=majority`;
+console.log(process.env.USER_NAME);
+console.log(process.env.PASSWORD);
+
+const mongoDB = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.ofmazu6.mongodb.net/local_lib?retryWrites=true&w=majority`;
 
 main().catch((err) => console.log(err));
 async function main() {
