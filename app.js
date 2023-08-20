@@ -15,8 +15,6 @@ const app = express();
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
-console.log(process.env.USER_NAME);
-console.log(process.env.PASSWORD);
 
 const mongoDB = `mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.ofmazu6.mongodb.net/local_lib?retryWrites=true&w=majority`;
 
